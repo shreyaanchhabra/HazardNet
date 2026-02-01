@@ -1,0 +1,7 @@
+streamlit
+pillow
+groq
+requests
+langgraph
+langchain-groq
+markdown
