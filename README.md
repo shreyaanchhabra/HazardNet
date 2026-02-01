@@ -81,22 +81,22 @@ An intelligent system that analyzes images to detect wildfires and floods, asses
 └────────┬────────┘
          │
          ▼
-┌─────────────────────────────────────────────┐
-│         LangGraph Workflow                  │
-│         (workflow.py)                       │
-├─────────────────────────────────────────────┤
+┌────────────────────────────────────────────┐
+│         LangGraph Workflow                 │
+│         (workflow.py)                      │
+├────────────────────────────────────────────┤
 │  ┌─────────────┐    ┌──────────────┐       │
 │  │   Detect    │───▶│  Risk Level  │       │
 │  │   Disaster  │    │  Assessment  │       │
 │  └─────────────┘    └──────┬───────┘       │
-│         │                   │               │
-│         │                   ▼               │
-│         │           ┌──────────────┐        │
-│         │           │ Action Plan  │        │
-│         │           │  Generator   │        │
-│         │           └──────┬───────┘        │
-│         │                  │                │
-│         ▼                  ▼                │
+│                            │               │
+│                            ▼               │
+│                    ┌──────────────┐        │
+│                    │ Action Plan  │        │
+│                    │  Generator   │        │
+│                    └──────┬───────┘        │
+│                           │                │
+│                           ▼                │
 │    ┌─────────────────────────────┐         │
 │    │   n8n Webhook Integration   │         │
 │    └─────────────┬───────────────┘         │
@@ -155,13 +155,12 @@ Python 3.9+
 
 - Python 3.9 or higher
 - Groq API key ([Get one here](https://console.groq.com/))
-- n8n webhook URL (optional, for email alerts)
+- n8n webhook URL (optional, for email alerts and data logging)
 
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/crisis-detection-ai.git
-cd crisis-detection-ai
+git clone https://github.com/shreyaanchhabra/HazardNet.git
 ```
 
 ### Step 2: Create Virtual Environment
@@ -247,72 +246,24 @@ print(f"Action Plan: {result['action_plan']}")
 
 ## 🌐 Deployment
 
-### Streamlit Community Cloud (Recommended)
+### Render
 
-**Free, easiest option for Streamlit apps**
-
-1. **Push to GitHub**
-   ```bash
-   git add .
-   git commit -m "Initial deployment"
-   git push origin main
-   ```
-
-2. **Deploy on Streamlit Cloud**
-   - Go to [share.streamlit.io](https://share.streamlit.io)
-   - Click "New app"
-   - Select your repository
-   - Main file: `app.py`
-   - Advanced settings → Add secrets:
-     ```toml
-     GROQ_API_KEY = "your_key"
-     ```
-   - Click "Deploy"
+`URL`
 
 3. **Access Your App**
    - You'll get a URL like: `https://crisis-detection-yourname.streamlit.app`
 
-### Railway.app
-
-**For more control and custom domains**
-
-1. **Push to GitHub**
-2. Go to [railway.app](https://railway.app)
-3. New Project → Deploy from GitHub
-4. Select repository
-5. Add environment variables in Railway dashboard
-6. Deploy automatically!
-
-### Docker Deployment
-
-```bash
-# Build image
-docker build -t crisis-detector .
-
-# Run container
-docker run -p 8501:8501 crisis-detector
-```
-
----
 
 ## 📁 Project Structure
 
 ```
-crisis-detection-ai/
+HazardNet
 │
 ├── app.py                  # Streamlit web interface
 ├── workflow.py             # LangGraph agent workflow
 ├── prompts.py              # AI prompts for each agent
 ├── requirements.txt        # Python dependencies
-│
-├── .streamlit/
-│   └── secrets.toml        # API keys (gitignored)
-│
-├── .gitignore              # Git ignore file
 ├── README.md               # This file
-├── LICENSE                 # MIT License
-│
-└── temp_*.jpeg             # Temporary uploaded images (auto-cleanup)
 ```
 
 ### Key Files Explained
@@ -501,17 +452,6 @@ workflow.add_edge("send_sms", "post_slack")
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how you can help:
-
-### Reporting Bugs
-- Use the [GitHub Issues](https://github.com/yourusername/crisis-detection-ai/issues) page
-- Include screenshots and error logs
-- Describe steps to reproduce
-
-### Feature Requests
-- Open an issue with the `enhancement` label
-- Explain the use case and benefit
-
 ### Pull Requests
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -608,6 +548,5 @@ in the Software without restriction...
 
 **Built with ❤️ for a safer world**
 
-[⭐ Star this repo](https://github.com/yourusername/crisis-detection-ai) | [🐛 Report Bug](https://github.com/yourusername/crisis-detection-ai/issues) | [✨ Request Feature](https://github.com/yourusername/crisis-detection-ai/issues)
 
 </div>
