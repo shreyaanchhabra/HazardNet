@@ -1,4 +1,3 @@
-# agent.py
 from typing import TypedDict
 from groq import Groq
 import base64, json
@@ -209,22 +208,4 @@ class DisasterResponseAgent:
             print(f"✗ Error sending to n8n: {e}")
         
         return state  # Changed from {} to state
-        
-
-agent = DisasterResponseAgent()
-result = agent.workflow.invoke({
-    "image_path": "wildfire.jpeg"
-})
-
-print(f"""
-=== DISASTER DETECTION ===
-Type: {result['disaster']['type']}
-Description: {result['disaster']['description']}
-
-=== RISK ASSESSMENT ===
-{result['risk_level']}
-
-=== ACTION PLAN ===
-{result['action_plan']}
-""")
 
